@@ -1,9 +1,6 @@
 # PCemV17macOS
 PCem for macOS + OpenGL 3.0 support
 
-# PCemV16macOS
-MacOS port of PCem low-level PC hardware emulator PCem V16. Experimental OpenGL 3 port. 
-
 **NOTE: Currently PCem will not compile on macOS 11 Big Sur. Follow the instructions below if you are running Mojave (10.14) or Catalina (10.15). There is a work-around to get your PCem you compiled in Mojave/Catalina running on Big Sur, which is detailed separately below.
 
 Step 1: Install Xcode command-line tools
