@@ -1,4 +1,4 @@
-# PCemV16macOS
+# PCemV17macOS
 MacOS port of PCem low-level PC hardware emulator PCem V17. Experimental OpenGL 3 port. 
 
 **Under macOS 10.14 (Mojave) and 10.15 (Catalina):**
