@@ -1,9 +1,7 @@
-# PCemV17macOS
-PCem for macOS + OpenGL 3.0 support
+# PCemV16macOS
+MacOS port of PCem low-level PC hardware emulator PCem V16. Experimental OpenGL 3 port. 
 
-**NOTE: Currently PCem will not compile on macOS 11 Big Sur. Follow the instructions below if you are running Mojave (10.14) or Catalina (10.15). There is a work-around to get your PCem you compiled in Mojave/Catalina running on Big Sur, which is detailed separately below.
-
-**NOTE: There are reports of severely degraded performance from the dynamic recompiler in v17 of PCem, which apparently only affects the macOS build and perhaps only for certain processor configurations within the emulator. This is currently being investigated, but if you experience issues it is suggested that you revert to v16 for the time being.
+**Under macOS 10.14 (Mojave) and 10.15 (Catalina):**
 
 Step 1: Install Xcode command-line tools
 
@@ -25,13 +23,13 @@ brew install wxmac
 
 brew install openal-soft
 
-Step 3: Download the Source Code
+Step 4: Download the Source Code
 
 Download the source code from this repository and change directory to the PCem install folder.
 
 Example: cd /PCemV16macOS-master
 
-Step 3: Build PCem
+Step 5: Build PCem
 
 Run the configuration script:
 
@@ -47,24 +45,21 @@ make
 
 This will take a while. You may see some warning messages during the make process but they do not seem to cause any issues with the compile. Once it completes you'll have the pcem executable file in the install folder. To start the program just run ./pcem from the terminal. You will need to obtain the required ROM files for the machine you want to emulate and need at least one valid ROM for pcem to start. These go in the roms folder located in the folder where PCem is installed.
 
+**Under macOS 11 (Big Sur):**
 
+1. Follow the same steps 1-4 as described above for Mojave & Catalina, but ommitting the command to install wxmac via Homebrew.
 
-
-**To run PCem on Big Sur (confirmed as working in 11.2.1), follow these exact steps*
-
-In Mojave or Catalina:
-
-(if you never installed wxmac with Homebrew, skip step 1)
-
-1. In Terminal run:
+If wxmac is already installed, in Terminal run:
 
 brew uninstall wxmac
 
-2. Download: 
+Alternatively, you can go to usr/local/Cellar and move the wxmac folder elsewhere, unless/until you want the unmodified Homebrew version installed again.
+
+2. Download wxmac from source: 
 
 https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5.1/wxWidgets-3.0.5.1.tar.bz2
 
-cd to the wxWidgets folder and run:
+cd to the wxWidgets-3.0.5.1 folder and run:
 
 ./configure --prefix=/usr/local/Cellar/wxmac/3.0.5.1_1 --enable-clipboard --enable-controls --enable-dataviewctrl --enable-display --enable-dnd --enable-graphics_ctx --enable-std_string --enable-svg --enable-unicode --with-expat --with-libjpeg --with-libpng --with-libtiff --with-opengl --with-osx_cocoa --with-zlib --disable-precomp-headers --disable-monolithic --with-macosx-version-min=10.15 --disable-webview
 
@@ -85,11 +80,3 @@ Then run:
 make
 
 This should result in the successfull compilation of the 'pcem' executable. Running it should produce the standard initial error message that no ROMs are present.
-
-On Big Sur:
-
-Follow steps 1-3 as above, to create an identical installation of wxmac on your Big Sur installation. Alternatively, if you have access to dual installs of macOS, you can copy the wxmac you installed under usr/local/Cellar in Mojave/Catalina and move it to the same location in your Big Sur installation.
-
-Copy across your Pcem executable from Mojave/Catalina and it should run fine, producing the same ROM error, which means you are in business!
-
-If a lack of webview functionality in wxmac causes problems for other packages, you can just move the folder temporarily, or delete it and re-install the standard package using Homebrew.
