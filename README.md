@@ -74,7 +74,7 @@ This creates the wxmac libraries and the path to the config file is:
 
 /usr/local/Cellar/wxmac/3.0.5.1_1/bin/wx-config
 
-Download my PCemV16 source as above, cd into the folder and run the following configure command:
+Download the PCemV17 source as above, cd into the folder and run the following configure command:
 
 ./configure --enable-networking --enable-release-build --with-wxdir=/usr/local/Cellar/wxmac/3.0.5.1_1/bin/
 
