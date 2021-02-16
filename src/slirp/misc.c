@@ -8,6 +8,8 @@
 #define WANT_SYS_IOCTL_H
 #include <stdlib.h>
 #include "slirp.h"
+#include <fcntl.h> // for open
+#include <unistd.h> // for close
 
 u_int curtime, time_fasttimo, last_slowtimo, detach_time;
 u_int detach_wait = 600000;	/* 10 minutes */

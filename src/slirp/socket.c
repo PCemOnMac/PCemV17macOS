@@ -8,6 +8,8 @@
 #define WANT_SYS_IOCTL_H
 #include <stdlib.h>
 #include "slirp.h"
+#include <fcntl.h> // for open
+#include <unistd.h> // for close
 #include "ip_icmp.h"
 #include "main.h"
 #ifdef __sun__

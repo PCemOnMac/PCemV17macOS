@@ -7,6 +7,8 @@
  */
 
 #include "slirp.h"
+#include <fcntl.h> // for open
+#include <unistd.h> // for close
 
 FILE *dfd = NULL;
 #ifdef SLIRP_DEBUG

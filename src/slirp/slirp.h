@@ -10,6 +10,8 @@
 #endif
 #include "config.h"
 #include "slirp_config.h"
+#include <fcntl.h> // for open
+#include <unistd.h> // for close
 
 #ifndef container_of
 #define container_of(address, type, field) ((type *)( \

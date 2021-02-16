@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
+#include <sys/time.h>
 #include "thread.h"
 #if defined WIN32 || defined _WIN32 || defined _WIN32
 #include <windows.h>
