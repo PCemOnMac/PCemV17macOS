@@ -3,6 +3,8 @@ PCem for macOS + OpenGL 3.0 support
 
 **NOTE: Currently PCem will not compile on macOS 11 Big Sur. Follow the instructions below if you are running Mojave (10.14) or Catalina (10.15). There is a work-around to get your PCem you compiled in Mojave/Catalina running on Big Sur, which is detailed separately below.
 
+**NOTE: There are reports of severely degraded performance from the dynamic recompiler in v17 of PCem, which seems to be only affect macOS and perhaps only certain processor configurations. This is in the process of being investigated, but if you experience issues it is suggested that you revert to v16 for the time being.
+
 Step 1: Install Xcode command-line tools
 
 You need Xcode command-line tools from Apple in order to install Home Brew. You can install Xcode from the App Store or, when you run the Home Brew install script (step 2), it will install the command-line tools for you.
