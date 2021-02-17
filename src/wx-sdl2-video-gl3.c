@@ -57,7 +57,11 @@ extern int video_refresh_rate;
 static int glsl_version[2];
 
 const char* vertex_shader_default_tex_src =
+#ifdef __APPLE__
+        "#version 150\n"
+#else
         "#version 130\n"
+#endif
         "\n"
         "in vec4 VertexCoord;\n"
         "in vec2 TexCoord;\n"
@@ -71,7 +75,11 @@ const char* vertex_shader_default_tex_src =
         "}\n";
 
 const char* fragment_shader_default_tex_src =
+#ifdef __APPLE__
+        "#version 150\n"
+#else
         "#version 130\n"
+#endif
         "\n"
         "in vec2 texCoord;\n"
         "uniform sampler2D Texture;\n"
@@ -84,7 +92,11 @@ const char* fragment_shader_default_tex_src =
         "}\n";
 
 const char* vertex_shader_default_color_src =
+#ifdef __APPLE__
+        "#version 150\n"
+#else
         "#version 130\n"
+#endif
         "\n"
         "in vec4 VertexCoord;\n"
         "in vec4 Color;\n"
@@ -98,7 +110,11 @@ const char* vertex_shader_default_color_src =
         "}\n";
 
 const char* fragment_shader_default_color_src =
+#ifdef __APPLE__
+        "#version 150\n"
+#else
         "#version 130\n"
+#endif
         "\n"
         "in vec4 color;\n"
         "\n"
@@ -769,6 +785,13 @@ int gl3_init(SDL_Window* window, sdl_render_driver requested_render_driver, SDL_
         strcpy(current_render_driver_name, requested_render_driver.name);
 
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    
+    #ifdef __APPLE__
+        // without an explicit request for the core profile 3.0 macOS falls back to default ancient 2.1
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
 
         context = SDL_GL_CreateContext(window);
 
@@ -1637,11 +1660,21 @@ int gl3_renderer_available(struct sdl_render_driver* driver)
         if (available < 0)
         {
                 available = 0;
+            
+                // GL SetAttribute should be done *before* window creation for the attributes to apply on
+                // context creation (seems to depend on OpenGL impl. but it souldn't hurt other platforms
+                // to do it here (earlier than before)
+                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+
+#ifdef __APPLE__
+                // without an explicit request for the core profile 3.0 macOS falls back to default ancient 2.1
+                SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+#endif
+
                 SDL_Window* window = SDL_CreateWindow("GL3 test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1, 1, SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL);
                 if (window)
                 {
-                        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-                        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
                         SDL_GLContext context = SDL_GL_CreateContext(window);
                         if (context)
