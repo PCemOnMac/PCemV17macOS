@@ -27,7 +27,7 @@ Step 4: Download the Source Code
 
 Download the source code from this repository and change directory to the PCem install folder.
 
-Example: cd /PCemV16macOS-master
+Example: cd /PCemV17macOS-master
 
 Step 5: Build PCem
 
@@ -41,7 +41,8 @@ If you want networking support:
 
 Assuming the command completes successfully run:
 
-make
+# uses 4 threads in parallel and makes spaced for dylibs to be renamed later (in bundles)
+make -j4 -Wl,headerpad_max_install_names
 
 This will take a while. You may see some warning messages during the make process but they do not seem to cause any issues with the compile. Once it completes you'll have the pcem executable file in the install folder. To start the program just run ./pcem from the terminal. You will need to obtain the required ROM files for the machine you want to emulate and need at least one valid ROM for pcem to start. These go in the roms folder located in the folder where PCem is installed.
 
