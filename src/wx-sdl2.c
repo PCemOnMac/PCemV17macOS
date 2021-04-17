@@ -251,7 +251,7 @@ void get_pcem_path(char *s, int size)
 #elif defined __APPLE__
 
     wx_get_home_directory(s);
-    strcat(s, "PCem/");
+    strcat(s, "Library/Application Support/PCem/");
 
     struct stat st = {0};
 
