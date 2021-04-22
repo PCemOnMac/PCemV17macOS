@@ -72,6 +72,10 @@ case "${host_cpu}" in
     CPU=arm64
     AC_MSG_RESULT(${host_cpu})
     ;;
+    arm)
+    CPU=arm64 # MacOS has "arm" in the host string
+    AC_MSG_RESULT(${host_cpu})
+    ;;
     *)
     AC_MSG_ERROR([Unsupported CPU. ${host_cpu}])
     ;;

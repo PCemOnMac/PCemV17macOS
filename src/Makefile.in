@@ -124,10 +124,9 @@ bin_PROGRAMS = pcem$(EXEEXT)
 DEFAULT_INCLUDES = -I.@am__isrc@
 @OS_WINDOWS_TRUE@am__append_20 = cdrom-ioctl.c wx-sdl2-display-win.c
 @OS_WINDOWS_TRUE@am__append_21 = wx.res
-
-#pcem_CFLAGS += -Doff64_t=off_t -Dfopen64=fopen -Dfseeko64=fseek -Dftello64=ftell
-@RELEASE_BUILD_TRUE@am__append_22 = -DRELEASE_BUILD
+@HAS_OFF64T_FALSE@am__append_22 = -Doff64_t=off_t -Dfopen64=fopen -Dfseeko64=fseek -Dftello64=ftell
 @RELEASE_BUILD_TRUE@am__append_23 = -DRELEASE_BUILD
+@RELEASE_BUILD_TRUE@am__append_24 = -DRELEASE_BUILD
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -764,10 +763,11 @@ pcem_SOURCES = 386.c 386_common.c 386_dynarec.c 386_dynarec_ops.c \
 	$(am__append_16) $(am__append_17) $(am__append_20)
 pcem_CFLAGS = $(subst -fpermissive,,$(shell $(WX_CONFIG_PATH) \
 	--cxxflags) $(shell sdl2-config --cflags)) $(am__append_7) \
-	$(am__append_11) $(am__append_18) $(am__append_22)
+	$(am__append_11) $(am__append_18) $(am__append_22) \
+	$(am__append_23)
 pcem_CXXFLAGS = $(shell $(WX_CONFIG_PATH) --cxxflags) $(shell \
 	sdl2-config --cflags) $(am__append_12) $(am__append_19) \
-	$(am__append_23)
+	$(am__append_24)
 pcem_LDADD = @LIBS@ $(am__append_3) $(am__append_14) $(am__append_21)
 @OS_WINDOWS_TRUE@DEFAULT_INCLUDES = -iquote .
 all: all-am

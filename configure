@@ -4238,6 +4238,11 @@ $as_echo "${host_cpu}" >&6; }
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${host_cpu}" >&5
 $as_echo "${host_cpu}" >&6; }
     ;;
+    arm)
+    CPU=arm64 # MacOS has "arm" in the host string
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${host_cpu}" >&5
+$as_echo "${host_cpu}" >&6; }
+    ;;
     *)
     as_fn_error $? "Unsupported CPU. ${host_cpu}" "$LINENO" 5
     ;;
