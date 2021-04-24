@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#if defined __APPLE__
+#include <string.h>
+#include <dispatch/dispatch.h>
+#if defined __aarch64__
+#include <pthread.h>
+#endif
+#endif
 #include "ibm.h"
 #include "device.h"
 
@@ -306,9 +313,17 @@ void initpc(int argc, char *argv[])
         mem_init();
         loadbios();
         mem_add_bios();
-                        
+
+#if defined __APPLE__ && defined __aarch64__
+        pthread_jit_write_protect_np(0);
+#endif
+
         codegen_init();
-        
+
+#if defined __APPLE__ && defined __aarch64__
+        pthread_jit_write_protect_np(1);
+#endif
+
         timer_reset();
         sound_reset();
         io_init();
@@ -510,6 +525,14 @@ int serial_fifo_read, serial_fifo_write;
 
 int emu_fps = 0;
 
+#ifdef __APPLE__
+static void _set_window_title(void *s)
+{
+        set_window_title((const char *)s);
+        free(s);
+}
+#endif
+
 void runpc()
 {
         char s[200];
@@ -585,6 +608,11 @@ void runpc()
         {
                 win_title_update=0;
                 sprintf(s, "PCem v17 - %i%% - %s - %s - %s", fps, model_getname(), models[model].cpu[cpu_manufacturer].cpus[cpu].name, (!mousecapture) ? "Click to capture mouse" : ((mouse_get_type(mouse_type) & MOUSE_TYPE_3BUTTON) ? "Press CTRL-END to release mouse" : "Press CTRL-END or middle button to release mouse"));
+#ifdef __APPLE__
+                dispatch_async_f(dispatch_get_main_queue(), strdup(s), _set_window_title);
+#else
+                set_window_title(s);
+#endif
         }
         done++;
 }
