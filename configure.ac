@@ -31,8 +31,8 @@ if test "$enable_debug" = "yes"; then
    CXXFLAGS="-Wall -O0 -g -D_DEBUG -fcommon"
    AC_MSG_RESULT([yes])
 else
-   CFLAGS="-O3 -fcommon"
-   CXXFLAGS="-O3 -fcommon"
+   CFLAGS="-O3 -fcommon -fno-inline-functions"
+   CXXFLAGS="-O3 -fcommon -fno-inline-functions"
    AC_MSG_RESULT([no])
 fi
 
