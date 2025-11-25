@@ -108,13 +108,11 @@ This should result in the successfull compilation of the 'pcem' executable. Runn
 No need for `brew`, can do `macports`.
 Just install `SDL2` and `WxWidgets`.
 
-NO overdrive CPUs supported.
-
 ## Hardware / device emulation
 
 ### Dynamic recompilation
 
-Looks like for any CPU above 386 there is the
+Looks like for any CPU above 486 there is the
 ```cpu_use_dynarec``` setting enabled. This, however, just
 doesn't work. So, whenever the Motherboard/CPU configuration is
 changed, I manually edit the config file to set the
@@ -122,6 +120,10 @@ changed, I manually edit the config file to set the
 ```sh
 cpu_use_dynarec = 0
 ```
+
+Generally, CPUs above 486 seem to run much slower, likely due to
+the dynamic recompilation disabled. Also, no overdrive CPUs
+supported.
 
 ### Floppy/CD-ROM drive images
 
@@ -134,7 +136,7 @@ corruption).
 
 ### CD-ROM emulation
 
-The CD-ROM emulation appears to be broken. I guess fixing needs
+The CD-ROM emulation appears to be broken. Fixing probably needs
 importing OSX specific code from SDL.
 
 ### SCSI settings
@@ -160,15 +162,16 @@ support the virtual networking.
 
 ## Some keyboard mappings
 
-IBM PC Key          | Maps to
-====================+============================================
-<kbd>delete</kbd>   | <kbd>fn</kbd>-<kbd>delete</kbd>
-<kbd>Page Up</kbd>  | <kbd>fn</kbd>-<kbd>arrow up</kbd>
-<kbd>Page Down</kbd>| <kbd>fn</kbd>-<kbd>arrow down</kbd>
-Enter
-Num Pad Enter
-Backspace
-<kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd> | <kbd>⌘ Command</kbd>
+|IBM PC Key          | Maps to
++====================+============================================
+|<kbd>delete</kbd>   | <kbd>fn</kbd>-<kbd>delete</kbd>
+|<kbd>Page Up</kbd>  | <kbd>fn</kbd>-<kbd>arrow up</kbd>
+|<kbd>Page Down</kbd>| <kbd>fn</kbd>-<kbd>arrow down</kbd>
+|Enter
+|Num Pad Enter
+|Backspace
+|<kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd> | <kbd>⌘ Command</kbd>
+|
 
 NOTE: after <kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd>
 or a programatic reset, make sure to click on the output window
