@@ -100,3 +100,86 @@ make
 ```
 
 This should result in the successfull compilation of the 'pcem' executable. Running it should produce the standard initial error message that no ROMs are present.
+
+# Application and usage notes on OSX Mojave
+
+## Building and running
+
+No need for `brew`, can do `macports`.
+Just install `SDL2` and `WxWidgets`.
+
+NO overdrive CPUs supported.
+
+## Hardware / device emulation
+
+### Dynamic recompilation
+
+Looks like for any CPU above 386 there is the
+```cpu_use_dynarec``` setting enabled. This, however, just
+doesn't work. So, whenever the Motherboard/CPU configuration is
+changed, I manually edit the config file to set the
+
+```sh
+cpu_use_dynarec = 0
+```
+
+### Floppy/CD-ROM drive images
+
+It looks like the GUI is incomplete. As such, the image files
+have to be added by hand, through editing the text config file.
+
+**NOTE:** Avoid relative paths for volumes - unpredictable
+results guaranteed (including, but not limited to the volume
+corruption).
+
+### CD-ROM emulation
+
+The CD-ROM emulation appears to be broken. I guess fixing needs
+importing OSX specific code from SDL.
+
+### SCSI settings
+
+For Adaptec:
+```
+IRQ: 10
+DMA: 7
+```
+
+For Buslogic:
+```
+IO: 0x334
+```
+
+### No networking
+
+NE2000 is a problem under some OSes (in particular,
+FreeBSD 2.2.7) as it has resource conflicts.
+
+Also, likely needs pcap driver on host or something else to
+support the virtual networking.
+
+## Some keyboard mappings
+
+IBM PC Key          | Maps to
+====================+============================================
+<kbd>delete</kbd>   | <kbd>fn</kbd>-<kbd>delete</kbd>
+<kbd>Page Up</kbd>  | <kbd>fn</kbd>-<kbd>arrow up</kbd>
+<kbd>Page Down</kbd>| <kbd>fn</kbd>-<kbd>arrow down</kbd>
+Enter
+Num Pad Enter
+Backspace
+<kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd> | <kbd>⌘ Command</kbd>
+
+NOTE: after <kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd>
+or a programatic reset, make sure to click on the output window
+to restart normal operation.
+
+## Notes on FreeBSD 2.2.7
+
+A working PCem v17 configuration for a Pentium 120 would be a
+Socket 7 motherboard (like an Intel VS440FX or Gigabyte GA-686BX)
+with a 120MHz Pentium CPU, at least 64MB of RAM, a Diamond
+Stealth 3D 2000 graphics card, and a Sound Blaster 16 audio
+card. A compatible sound card like the Sound Blaster 16 and
+a Diamond Stealth 3D 2000 graphics card are good choices for a
+mid-1990s PC build.
