@@ -162,9 +162,9 @@ support the virtual networking.
 
 ## Some keyboard mappings
 
-|======================|============================================
+|----------------------|--------------------------------------------
 | IBM PC Key           | Maps to
-|======================|============================================
+|----------------------|--------------------------------------------
 | <kbd>delete</kbd>    | <kbd>fn</kbd>-<kbd>delete</kbd>
 | <kbd>Page Up</kbd>   | <kbd>fn</kbd>-<kbd>arrow up</kbd>
 | <kbd>Page Down</kbd> | <kbd>fn</kbd>-<kbd>arrow down</kbd>
