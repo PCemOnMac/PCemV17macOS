@@ -162,17 +162,16 @@ support the virtual networking.
 
 ## Some keyboard mappings
 
-|----------------------|--------------------------------------------
 | IBM PC Key           | Maps to
 |----------------------|--------------------------------------------
 | <kbd>delete</kbd>    | <kbd>fn</kbd>-<kbd>delete</kbd>
 | <kbd>Page Up</kbd>   | <kbd>fn</kbd>-<kbd>arrow up</kbd>
 | <kbd>Page Down</kbd> | <kbd>fn</kbd>-<kbd>arrow down</kbd>
-| Enter
-| Num Pad Enter
-| Backspace
+| <kbd>Enter</kbd> | <kbd>fn</kbd>-<kbd>return</kbd>
+| Num Pad <kbd>Enter</kbd> | <kbd>fn</kbd>-<kbd>return</kbd>
+| <kbd>Backspace</kbd> | <kbd>fn</kbd>-<kbd>delete</kbd>
 | <kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd> | <kbd>⌘ Command</kbd>
-|
+
 
 NOTE: after <kbd>Ctrl</kbd>-<kbd>Alt</kbd>-<kbd>Delete</kbd>
 or a programatic reset, make sure to click on the output window
